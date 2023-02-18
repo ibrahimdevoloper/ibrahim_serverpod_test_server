@@ -6,7 +6,7 @@ CREATE TABLE "posts" (
   "id" serial,
   "title" text NOT NULL,
   "subtitle" text NOT NULL,
-  "count" integer,
+  "viewsCount" integer,
   "commentCount" integer
 );
 

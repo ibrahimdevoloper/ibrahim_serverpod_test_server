@@ -3,5 +3,5 @@ table: posts
 fields:
   title: String
   subtitle: String
-  count: int?
+  viewsCount: int?
   commentCount: int?

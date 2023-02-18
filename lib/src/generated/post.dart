@@ -13,7 +13,7 @@ class Post extends _i1.TableRow {
     int? id,
     required this.title,
     required this.subtitle,
-    this.count,
+    this.viewsCount,
     this.commentCount,
   }) : super(id);
 
@@ -27,7 +27,8 @@ class Post extends _i1.TableRow {
           serializationManager.deserialize<String>(jsonSerialization['title']),
       subtitle: serializationManager
           .deserialize<String>(jsonSerialization['subtitle']),
-      count: serializationManager.deserialize<int?>(jsonSerialization['count']),
+      viewsCount: serializationManager
+          .deserialize<int?>(jsonSerialization['viewsCount']),
       commentCount: serializationManager
           .deserialize<int?>(jsonSerialization['commentCount']),
     );
@@ -39,7 +40,7 @@ class Post extends _i1.TableRow {
 
   String subtitle;
 
-  int? count;
+  int? viewsCount;
 
   int? commentCount;
 
@@ -51,7 +52,7 @@ class Post extends _i1.TableRow {
       'id': id,
       'title': title,
       'subtitle': subtitle,
-      'count': count,
+      'viewsCount': viewsCount,
       'commentCount': commentCount,
     };
   }
@@ -62,7 +63,7 @@ class Post extends _i1.TableRow {
       'id': id,
       'title': title,
       'subtitle': subtitle,
-      'count': count,
+      'viewsCount': viewsCount,
       'commentCount': commentCount,
     };
   }
@@ -73,7 +74,7 @@ class Post extends _i1.TableRow {
       'id': id,
       'title': title,
       'subtitle': subtitle,
-      'count': count,
+      'viewsCount': viewsCount,
       'commentCount': commentCount,
     };
   }
@@ -93,8 +94,8 @@ class Post extends _i1.TableRow {
       case 'subtitle':
         subtitle = value;
         return;
-      case 'count':
-        count = value;
+      case 'viewsCount':
+        viewsCount = value;
         return;
       case 'commentCount':
         commentCount = value;
@@ -227,7 +228,7 @@ class PostTable extends _i1.Table {
 
   final subtitle = _i1.ColumnString('subtitle');
 
-  final count = _i1.ColumnInt('count');
+  final viewsCount = _i1.ColumnInt('viewsCount');
 
   final commentCount = _i1.ColumnInt('commentCount');
 
@@ -236,7 +237,7 @@ class PostTable extends _i1.Table {
         id,
         title,
         subtitle,
-        count,
+        viewsCount,
         commentCount,
       ];
 }
