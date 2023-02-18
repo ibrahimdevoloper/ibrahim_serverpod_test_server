@@ -8,51 +8,40 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 
-class Post extends _i1.TableRow {
-  Post({
+class Comment extends _i1.TableRow {
+  Comment({
     int? id,
-    required this.title,
-    required this.subtitle,
-    this.count,
-    this.commentCount,
+    required this.comment,
+    required this.postId,
   }) : super(id);
 
-  factory Post.fromJson(
+  factory Comment.fromJson(
     Map<String, dynamic> jsonSerialization,
     _i1.SerializationManager serializationManager,
   ) {
-    return Post(
+    return Comment(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      title:
-          serializationManager.deserialize<String>(jsonSerialization['title']),
-      subtitle: serializationManager
-          .deserialize<String>(jsonSerialization['subtitle']),
-      count: serializationManager.deserialize<int?>(jsonSerialization['count']),
-      commentCount: serializationManager
-          .deserialize<int?>(jsonSerialization['commentCount']),
+      comment: serializationManager
+          .deserialize<String>(jsonSerialization['comment']),
+      postId:
+          serializationManager.deserialize<int>(jsonSerialization['postId']),
     );
   }
 
-  static final t = PostTable();
+  static final t = CommentTable();
 
-  String title;
+  String comment;
 
-  String subtitle;
-
-  int? count;
-
-  int? commentCount;
+  int postId;
 
   @override
-  String get tableName => 'posts';
+  String get tableName => 'comments';
   @override
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'title': title,
-      'subtitle': subtitle,
-      'count': count,
-      'commentCount': commentCount,
+      'comment': comment,
+      'postId': postId,
     };
   }
 
@@ -60,10 +49,8 @@ class Post extends _i1.TableRow {
   Map<String, dynamic> toJsonForDatabase() {
     return {
       'id': id,
-      'title': title,
-      'subtitle': subtitle,
-      'count': count,
-      'commentCount': commentCount,
+      'comment': comment,
+      'postId': postId,
     };
   }
 
@@ -71,10 +58,8 @@ class Post extends _i1.TableRow {
   Map<String, dynamic> allToJson() {
     return {
       'id': id,
-      'title': title,
-      'subtitle': subtitle,
-      'count': count,
-      'commentCount': commentCount,
+      'comment': comment,
+      'postId': postId,
     };
   }
 
@@ -87,26 +72,20 @@ class Post extends _i1.TableRow {
       case 'id':
         id = value;
         return;
-      case 'title':
-        title = value;
+      case 'comment':
+        comment = value;
         return;
-      case 'subtitle':
-        subtitle = value;
-        return;
-      case 'count':
-        count = value;
-        return;
-      case 'commentCount':
-        commentCount = value;
+      case 'postId':
+        postId = value;
         return;
       default:
         throw UnimplementedError();
     }
   }
 
-  static Future<List<Post>> find(
+  static Future<List<Comment>> find(
     _i1.Session session, {
-    PostExpressionBuilder? where,
+    CommentExpressionBuilder? where,
     int? limit,
     int? offset,
     _i1.Column? orderBy,
@@ -115,8 +94,8 @@ class Post extends _i1.TableRow {
     bool useCache = true,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.find<Post>(
-      where: where != null ? where(Post.t) : null,
+    return session.db.find<Comment>(
+      where: where != null ? where(Comment.t) : null,
       limit: limit,
       offset: offset,
       orderBy: orderBy,
@@ -127,17 +106,17 @@ class Post extends _i1.TableRow {
     );
   }
 
-  static Future<Post?> findSingleRow(
+  static Future<Comment?> findSingleRow(
     _i1.Session session, {
-    PostExpressionBuilder? where,
+    CommentExpressionBuilder? where,
     int? offset,
     _i1.Column? orderBy,
     bool orderDescending = false,
     bool useCache = true,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.findSingleRow<Post>(
-      where: where != null ? where(Post.t) : null,
+    return session.db.findSingleRow<Comment>(
+      where: where != null ? where(Comment.t) : null,
       offset: offset,
       orderBy: orderBy,
       orderDescending: orderDescending,
@@ -146,27 +125,27 @@ class Post extends _i1.TableRow {
     );
   }
 
-  static Future<Post?> findById(
+  static Future<Comment?> findById(
     _i1.Session session,
     int id,
   ) async {
-    return session.db.findById<Post>(id);
+    return session.db.findById<Comment>(id);
   }
 
   static Future<int> delete(
     _i1.Session session, {
-    required PostExpressionBuilder where,
+    required CommentExpressionBuilder where,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.delete<Post>(
-      where: where(Post.t),
+    return session.db.delete<Comment>(
+      where: where(Comment.t),
       transaction: transaction,
     );
   }
 
   static Future<bool> deleteRow(
     _i1.Session session,
-    Post row, {
+    Comment row, {
     _i1.Transaction? transaction,
   }) async {
     return session.db.deleteRow(
@@ -177,7 +156,7 @@ class Post extends _i1.TableRow {
 
   static Future<bool> update(
     _i1.Session session,
-    Post row, {
+    Comment row, {
     _i1.Transaction? transaction,
   }) async {
     return session.db.update(
@@ -188,7 +167,7 @@ class Post extends _i1.TableRow {
 
   static Future<void> insert(
     _i1.Session session,
-    Post row, {
+    Comment row, {
     _i1.Transaction? transaction,
   }) async {
     return session.db.insert(
@@ -199,13 +178,13 @@ class Post extends _i1.TableRow {
 
   static Future<int> count(
     _i1.Session session, {
-    PostExpressionBuilder? where,
+    CommentExpressionBuilder? where,
     int? limit,
     bool useCache = true,
     _i1.Transaction? transaction,
   }) async {
-    return session.db.count<Post>(
-      where: where != null ? where(Post.t) : null,
+    return session.db.count<Comment>(
+      where: where != null ? where(Comment.t) : null,
       limit: limit,
       useCache: useCache,
       transaction: transaction,
@@ -213,33 +192,27 @@ class Post extends _i1.TableRow {
   }
 }
 
-typedef PostExpressionBuilder = _i1.Expression Function(PostTable);
+typedef CommentExpressionBuilder = _i1.Expression Function(CommentTable);
 
-class PostTable extends _i1.Table {
-  PostTable() : super(tableName: 'posts');
+class CommentTable extends _i1.Table {
+  CommentTable() : super(tableName: 'comments');
 
   /// The database id, set if the object has been inserted into the
   /// database or if it has been fetched from the database. Otherwise,
   /// the id will be null.
   final id = _i1.ColumnInt('id');
 
-  final title = _i1.ColumnString('title');
+  final comment = _i1.ColumnString('comment');
 
-  final subtitle = _i1.ColumnString('subtitle');
-
-  final count = _i1.ColumnInt('count');
-
-  final commentCount = _i1.ColumnInt('commentCount');
+  final postId = _i1.ColumnInt('postId');
 
   @override
   List<_i1.Column> get columns => [
         id,
-        title,
-        subtitle,
-        count,
-        commentCount,
+        comment,
+        postId,
       ];
 }
 
-@Deprecated('Use PostTable.t instead.')
-PostTable tPost = PostTable();
+@Deprecated('Use CommentTable.t instead.')
+CommentTable tComment = CommentTable();

@@ -1,0 +1,5 @@
+class: Comment
+table: comments
+fields:
+  comment: String
+  postId: int, parent=posts
