@@ -3,5 +3,8 @@ table: posts
 fields:
   title: String
   subtitle: String
-  viewsCount: int?
-  commentCount: int?
+  viewsCount: int
+  commentCount: int
+  postDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime

@@ -8,6 +8,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/example_endpoint.dart' as _i2;
+import '../endpoints/post_endpoint.dart' as _i3;
+import 'package:ibrahim_serverpod_test_server/src/generated/post.dart' as _i4;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -18,7 +20,13 @@ class Endpoints extends _i1.EndpointDispatch {
           server,
           'example',
           null,
-        )
+        ),
+      'post': _i3.PostEndpoint()
+        ..initialize(
+          server,
+          'post',
+          null,
+        ),
     };
     connectors['example'] = _i1.EndpointConnector(
       name: 'example',
@@ -42,6 +50,81 @@ class Endpoints extends _i1.EndpointDispatch {
             params['name'],
           ),
         )
+      },
+    );
+    connectors['post'] = _i1.EndpointConnector(
+      name: 'post',
+      endpoint: endpoints['post']!,
+      methodConnectors: {
+        'createPost': _i1.MethodConnector(
+          name: 'createPost',
+          params: {
+            'title': _i1.ParameterDescription(
+              name: 'title',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+            'subtitle': _i1.ParameterDescription(
+              name: 'subtitle',
+              type: _i1.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['post'] as _i3.PostEndpoint).createPost(
+            session,
+            title: params['title'],
+            subtitle: params['subtitle'],
+          ),
+        ),
+        'updatePost': _i1.MethodConnector(
+          name: 'updatePost',
+          params: {
+            'post': _i1.ParameterDescription(
+              name: 'post',
+              type: _i1.getType<_i4.Post>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['post'] as _i3.PostEndpoint).updatePost(
+            session,
+            post: params['post'],
+          ),
+        ),
+        'deletePost': _i1.MethodConnector(
+          name: 'deletePost',
+          params: {
+            'post': _i1.ParameterDescription(
+              name: 'post',
+              type: _i1.getType<_i4.Post>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['post'] as _i3.PostEndpoint).deletePost(
+            session,
+            post: params['post'],
+          ),
+        ),
+        'getPosts': _i1.MethodConnector(
+          name: 'getPosts',
+          params: {},
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['post'] as _i3.PostEndpoint).getPosts(session),
+        ),
       },
     );
   }

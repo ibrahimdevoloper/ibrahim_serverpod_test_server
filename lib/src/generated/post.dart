@@ -13,8 +13,11 @@ class Post extends _i1.TableRow {
     int? id,
     required this.title,
     required this.subtitle,
-    this.viewsCount,
-    this.commentCount,
+    required this.viewsCount,
+    required this.commentCount,
+    required this.postDate,
+    required this.createdAt,
+    required this.updatedAt,
   }) : super(id);
 
   factory Post.fromJson(
@@ -28,9 +31,15 @@ class Post extends _i1.TableRow {
       subtitle: serializationManager
           .deserialize<String>(jsonSerialization['subtitle']),
       viewsCount: serializationManager
-          .deserialize<int?>(jsonSerialization['viewsCount']),
+          .deserialize<int>(jsonSerialization['viewsCount']),
       commentCount: serializationManager
-          .deserialize<int?>(jsonSerialization['commentCount']),
+          .deserialize<int>(jsonSerialization['commentCount']),
+      postDate: serializationManager
+          .deserialize<DateTime>(jsonSerialization['postDate']),
+      createdAt: serializationManager
+          .deserialize<DateTime>(jsonSerialization['createdAt']),
+      updatedAt: serializationManager
+          .deserialize<DateTime>(jsonSerialization['updatedAt']),
     );
   }
 
@@ -40,9 +49,15 @@ class Post extends _i1.TableRow {
 
   String subtitle;
 
-  int? viewsCount;
+  int viewsCount;
 
-  int? commentCount;
+  int commentCount;
+
+  DateTime postDate;
+
+  DateTime createdAt;
+
+  DateTime updatedAt;
 
   @override
   String get tableName => 'posts';
@@ -54,6 +69,9 @@ class Post extends _i1.TableRow {
       'subtitle': subtitle,
       'viewsCount': viewsCount,
       'commentCount': commentCount,
+      'postDate': postDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -65,6 +83,9 @@ class Post extends _i1.TableRow {
       'subtitle': subtitle,
       'viewsCount': viewsCount,
       'commentCount': commentCount,
+      'postDate': postDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -76,6 +97,9 @@ class Post extends _i1.TableRow {
       'subtitle': subtitle,
       'viewsCount': viewsCount,
       'commentCount': commentCount,
+      'postDate': postDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -99,6 +123,15 @@ class Post extends _i1.TableRow {
         return;
       case 'commentCount':
         commentCount = value;
+        return;
+      case 'postDate':
+        postDate = value;
+        return;
+      case 'createdAt':
+        createdAt = value;
+        return;
+      case 'updatedAt':
+        updatedAt = value;
         return;
       default:
         throw UnimplementedError();
@@ -232,6 +265,12 @@ class PostTable extends _i1.Table {
 
   final commentCount = _i1.ColumnInt('commentCount');
 
+  final postDate = _i1.ColumnDateTime('postDate');
+
+  final createdAt = _i1.ColumnDateTime('createdAt');
+
+  final updatedAt = _i1.ColumnDateTime('updatedAt');
+
   @override
   List<_i1.Column> get columns => [
         id,
@@ -239,6 +278,9 @@ class PostTable extends _i1.Table {
         subtitle,
         viewsCount,
         commentCount,
+        postDate,
+        createdAt,
+        updatedAt,
       ];
 }
 

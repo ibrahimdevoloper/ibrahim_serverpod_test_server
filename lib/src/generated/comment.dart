@@ -13,6 +13,9 @@ class Comment extends _i1.TableRow {
     int? id,
     required this.comment,
     required this.postId,
+    required this.commentDate,
+    required this.createdAt,
+    required this.updatedAt,
   }) : super(id);
 
   factory Comment.fromJson(
@@ -25,6 +28,12 @@ class Comment extends _i1.TableRow {
           .deserialize<String>(jsonSerialization['comment']),
       postId:
           serializationManager.deserialize<int>(jsonSerialization['postId']),
+      commentDate: serializationManager
+          .deserialize<DateTime>(jsonSerialization['commentDate']),
+      createdAt: serializationManager
+          .deserialize<DateTime>(jsonSerialization['createdAt']),
+      updatedAt: serializationManager
+          .deserialize<DateTime>(jsonSerialization['updatedAt']),
     );
   }
 
@@ -34,6 +43,12 @@ class Comment extends _i1.TableRow {
 
   int postId;
 
+  DateTime commentDate;
+
+  DateTime createdAt;
+
+  DateTime updatedAt;
+
   @override
   String get tableName => 'comments';
   @override
@@ -42,6 +57,9 @@ class Comment extends _i1.TableRow {
       'id': id,
       'comment': comment,
       'postId': postId,
+      'commentDate': commentDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -51,6 +69,9 @@ class Comment extends _i1.TableRow {
       'id': id,
       'comment': comment,
       'postId': postId,
+      'commentDate': commentDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -60,6 +81,9 @@ class Comment extends _i1.TableRow {
       'id': id,
       'comment': comment,
       'postId': postId,
+      'commentDate': commentDate,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
     };
   }
 
@@ -77,6 +101,15 @@ class Comment extends _i1.TableRow {
         return;
       case 'postId':
         postId = value;
+        return;
+      case 'commentDate':
+        commentDate = value;
+        return;
+      case 'createdAt':
+        createdAt = value;
+        return;
+      case 'updatedAt':
+        updatedAt = value;
         return;
       default:
         throw UnimplementedError();
@@ -206,11 +239,20 @@ class CommentTable extends _i1.Table {
 
   final postId = _i1.ColumnInt('postId');
 
+  final commentDate = _i1.ColumnDateTime('commentDate');
+
+  final createdAt = _i1.ColumnDateTime('createdAt');
+
+  final updatedAt = _i1.ColumnDateTime('updatedAt');
+
   @override
   List<_i1.Column> get columns => [
         id,
         comment,
         postId,
+        commentDate,
+        createdAt,
+        updatedAt,
       ];
 }
 

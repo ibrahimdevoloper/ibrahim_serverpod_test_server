@@ -1,2 +1,7 @@
 example:
   - hello:
+post:
+  - createPost:
+  - updatePost:
+  - deletePost:
+  - getPosts:

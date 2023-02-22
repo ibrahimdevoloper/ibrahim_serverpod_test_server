@@ -3,3 +3,6 @@ table: comments
 fields:
   comment: String
   postId: int, parent=posts
+  commentDate: DateTime
+  createdAt: DateTime
+  updatedAt: DateTime

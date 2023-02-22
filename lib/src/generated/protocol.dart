@@ -11,7 +11,8 @@ import 'package:serverpod/serverpod.dart' as _i1;
 import 'comment.dart' as _i2;
 import 'example.dart' as _i3;
 import 'post.dart' as _i4;
-import 'package:serverpod/protocol.dart' as _i5;
+import 'package:ibrahim_serverpod_test_server/src/generated/post.dart' as _i5;
+import 'package:serverpod/protocol.dart' as _i6;
 export 'comment.dart';
 export 'example.dart';
 export 'post.dart'; // ignore_for_file: equal_keys_in_map
@@ -52,8 +53,12 @@ class Protocol extends _i1.SerializationManagerServer {
     if (t == _i1.getType<_i4.Post?>()) {
       return (data != null ? _i4.Post.fromJson(data, this) : null) as T;
     }
+    if (t == List<_i5.Post>) {
+      return (data as List).map((e) => deserialize<_i5.Post>(e)).toList()
+          as dynamic;
+    }
     try {
-      return _i5.Protocol().deserialize<T>(data, t);
+      return _i6.Protocol().deserialize<T>(data, t);
     } catch (_) {}
     return super.deserialize<T>(data, t);
   }
@@ -89,7 +94,7 @@ class Protocol extends _i1.SerializationManagerServer {
   @override
   _i1.Table? getTableForType(Type t) {
     {
-      var table = _i5.Protocol().getTableForType(t);
+      var table = _i6.Protocol().getTableForType(t);
       if (table != null) {
         return table;
       }

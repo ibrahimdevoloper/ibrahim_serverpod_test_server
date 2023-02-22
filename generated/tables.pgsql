@@ -6,8 +6,11 @@ CREATE TABLE "posts" (
   "id" serial,
   "title" text NOT NULL,
   "subtitle" text NOT NULL,
-  "viewsCount" integer,
-  "commentCount" integer
+  "viewsCount" integer NOT NULL,
+  "commentCount" integer NOT NULL,
+  "postDate" timestamp without time zone NOT NULL,
+  "createdAt" timestamp without time zone NOT NULL,
+  "updatedAt" timestamp without time zone NOT NULL
 );
 
 ALTER TABLE ONLY "posts"
@@ -21,7 +24,10 @@ ALTER TABLE ONLY "posts"
 CREATE TABLE "comments" (
   "id" serial,
   "comment" text NOT NULL,
-  "postId" integer NOT NULL
+  "postId" integer NOT NULL,
+  "commentDate" timestamp without time zone NOT NULL,
+  "createdAt" timestamp without time zone NOT NULL,
+  "updatedAt" timestamp without time zone NOT NULL
 );
 
 ALTER TABLE ONLY "comments"
