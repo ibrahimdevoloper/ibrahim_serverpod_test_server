@@ -1,3 +1,8 @@
+comment:
+  - createComment:
+  - updateComment:
+  - deleteComment:
+  - getComments:
 example:
   - hello:
 post:
